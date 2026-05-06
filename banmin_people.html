@@ -1,0 +1,705 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>반민특위 시기 인물 행적 정리</title>
+  <style>
+    :root {
+      --bg: #f4efe6;
+      --paper: rgba(255, 252, 247, 0.94);
+      --paper-strong: #fffaf3;
+      --ink: #1e1a17;
+      --muted: #6a5d53;
+      --line: rgba(55, 39, 27, 0.14);
+      --accent: #8a2f1d;
+      --accent-soft: rgba(138, 47, 29, 0.12);
+      --accent-strong: #5f1f12;
+      --gold: #af7a2f;
+      --shadow: 0 18px 40px rgba(53, 33, 18, 0.12);
+    }
+
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      color: var(--ink);
+      font-family: "SUIT Variable", "Pretendard Variable", "Noto Sans KR", sans-serif;
+      background:
+        radial-gradient(circle at top right, rgba(175, 122, 47, 0.18), transparent 32%),
+        radial-gradient(circle at left 20%, rgba(138, 47, 29, 0.14), transparent 24%),
+        linear-gradient(180deg, #f7f1e8 0%, #efe7db 100%);
+    }
+
+    .page {
+      max-width: 1360px;
+      margin: 0 auto;
+      padding: 32px 20px 48px;
+    }
+
+    .hero {
+      position: relative;
+      overflow: hidden;
+      padding: 36px 32px;
+      border: 1px solid var(--line);
+      border-radius: 28px;
+      background:
+        linear-gradient(135deg, rgba(138, 47, 29, 0.96), rgba(92, 28, 16, 0.96)),
+        linear-gradient(180deg, rgba(255,255,255,0.08), rgba(255,255,255,0));
+      color: #fff8f1;
+      box-shadow: var(--shadow);
+    }
+
+    .hero::after {
+      content: "";
+      position: absolute;
+      inset: auto -10% -40% auto;
+      width: 340px;
+      height: 340px;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(255, 214, 164, 0.32), transparent 66%);
+      pointer-events: none;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 12px;
+      padding: 6px 10px;
+      border-radius: 999px;
+      background: rgba(255, 248, 241, 0.14);
+      color: #ffe3c7;
+      font-size: 0.82rem;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      margin: 0;
+      font-family: "Nanum Myeongjo", "Noto Serif KR", Georgia, serif;
+      font-weight: 700;
+      letter-spacing: -0.02em;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 4vw, 3.45rem);
+      line-height: 1.14;
+      max-width: 900px;
+    }
+
+    .hero p {
+      max-width: 860px;
+      margin: 16px 0 0;
+      color: rgba(255, 248, 241, 0.88);
+      font-size: 1rem;
+      line-height: 1.75;
+    }
+
+    .hero-meta {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 24px;
+    }
+
+    .hero-meta div {
+      padding: 14px 16px;
+      border-radius: 18px;
+      background: rgba(255, 248, 241, 0.09);
+      border: 1px solid rgba(255, 248, 241, 0.12);
+    }
+
+    .hero-meta strong {
+      display: block;
+      margin-bottom: 4px;
+      color: #ffe6ce;
+      font-size: 0.88rem;
+    }
+
+    .hero-meta span {
+      font-size: 0.95rem;
+      line-height: 1.55;
+      color: rgba(255, 248, 241, 0.92);
+    }
+
+    .analysis {
+      margin-top: 28px;
+      padding: 22px;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    .analysis-grid {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 18px;
+    }
+
+    .analysis-card {
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 18px;
+      background: linear-gradient(180deg, rgba(255,255,255,0.76), rgba(255,248,241,0.92));
+    }
+
+    .analysis-card h3 {
+      font-size: 1.05rem;
+      color: var(--accent-strong);
+      margin-bottom: 10px;
+    }
+
+    .analysis-card p {
+      margin: 0;
+      color: var(--muted);
+      line-height: 1.65;
+      font-size: 0.95rem;
+    }
+
+    .workspace {
+      margin-top: 28px;
+      display: grid;
+      grid-template-columns: minmax(0, 1.1fr) minmax(340px, 0.9fr);
+      gap: 20px;
+      align-items: start;
+    }
+
+    .panel {
+      border: 1px solid var(--line);
+      border-radius: 26px;
+      background: var(--paper);
+      box-shadow: var(--shadow);
+      backdrop-filter: blur(8px);
+    }
+
+    .table-panel {
+      overflow: hidden;
+    }
+
+    .panel-head {
+      padding: 22px 22px 16px;
+      border-bottom: 1px solid var(--line);
+    }
+
+    .panel-head p {
+      margin: 10px 0 0;
+      color: var(--muted);
+      line-height: 1.65;
+    }
+
+    .toolbar {
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      gap: 12px;
+      padding: 18px 22px;
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.55);
+    }
+
+    .toolbar input,
+    .toolbar select {
+      width: 100%;
+      padding: 14px 16px;
+      border: 1px solid rgba(55, 39, 27, 0.18);
+      border-radius: 14px;
+      background: #fffdf9;
+      color: var(--ink);
+      font: inherit;
+    }
+
+    .table-wrap {
+      overflow: auto;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+    }
+
+    thead th {
+      position: sticky;
+      top: 0;
+      z-index: 1;
+      padding: 14px 16px;
+      text-align: left;
+      font-size: 0.88rem;
+      letter-spacing: 0.04em;
+      color: var(--muted);
+      background: #fbf5ec;
+      border-bottom: 1px solid var(--line);
+    }
+
+    tbody tr {
+      cursor: pointer;
+      transition: transform 160ms ease, background 160ms ease;
+    }
+
+    tbody tr:hover {
+      background: rgba(138, 47, 29, 0.05);
+    }
+
+    tbody tr.active {
+      background: linear-gradient(90deg, rgba(138, 47, 29, 0.12), rgba(138, 47, 29, 0.03));
+    }
+
+    tbody td {
+      padding: 16px;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+      line-height: 1.55;
+    }
+
+    .person-name {
+      font-weight: 700;
+      color: var(--accent-strong);
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      padding: 4px 10px;
+      border-radius: 999px;
+      background: var(--accent-soft);
+      color: var(--accent-strong);
+      font-size: 0.78rem;
+      font-weight: 700;
+      white-space: nowrap;
+    }
+
+    .detail-panel {
+      position: sticky;
+      top: 20px;
+      padding: 22px;
+      min-height: 760px;
+      background:
+        linear-gradient(180deg, rgba(255,255,255,0.62), rgba(255,250,243,0.96)),
+        repeating-linear-gradient(
+          180deg,
+          rgba(175, 122, 47, 0.04) 0,
+          rgba(175, 122, 47, 0.04) 1px,
+          transparent 1px,
+          transparent 30px
+        );
+    }
+
+    .detail-top {
+      display: flex;
+      justify-content: space-between;
+      gap: 16px;
+      align-items: start;
+    }
+
+    .detail-top h2 {
+      font-size: 2rem;
+      margin-top: 8px;
+    }
+
+    .alias {
+      margin-top: 6px;
+      color: var(--muted);
+      font-size: 0.95rem;
+    }
+
+    .detail-summary {
+      margin-top: 18px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--gold);
+      background: rgba(255, 248, 241, 0.9);
+      line-height: 1.75;
+      color: #41352d;
+    }
+
+    .detail-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    .mini {
+      padding: 14px 16px;
+      border: 1px solid var(--line);
+      border-radius: 16px;
+      background: rgba(255,255,255,0.72);
+    }
+
+    .mini strong {
+      display: block;
+      color: var(--muted);
+      font-size: 0.84rem;
+      margin-bottom: 6px;
+    }
+
+    .mini span {
+      display: block;
+      line-height: 1.6;
+    }
+
+    .section {
+      margin-top: 24px;
+    }
+
+    .section h3 {
+      margin-bottom: 12px;
+      font-size: 1.12rem;
+    }
+
+    .section ul {
+      margin: 0;
+      padding-left: 20px;
+      line-height: 1.8;
+      color: #41352d;
+    }
+
+    .source-list {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 10px;
+    }
+
+    .source-item {
+      padding: 7px 10px;
+      border-radius: 999px;
+      background: rgba(175, 122, 47, 0.12);
+      color: #70480e;
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .note {
+      margin-top: 20px;
+      padding: 14px 16px;
+      border-radius: 14px;
+      background: rgba(138, 47, 29, 0.06);
+      color: var(--muted);
+      font-size: 0.92rem;
+      line-height: 1.65;
+    }
+
+    .empty {
+      padding: 28px 22px;
+      color: var(--muted);
+    }
+
+    @media (max-width: 1080px) {
+      .analysis-grid,
+      .hero-meta,
+      .workspace,
+      .detail-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .detail-panel {
+        position: static;
+        min-height: auto;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .page {
+        padding: 20px 14px 32px;
+      }
+
+      .hero,
+      .analysis,
+      .detail-panel,
+      .panel {
+        border-radius: 20px;
+      }
+
+      .toolbar {
+        grid-template-columns: 1fr;
+      }
+
+      tbody td,
+      thead th {
+        padding: 12px;
+      }
+
+      .detail-top {
+        flex-direction: column;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <section class="hero">
+      <div class="eyebrow">Historical Source Digest</div>
+      <h1>반민족행위특별조사위원회 활동 당시 인물 행적 정리</h1>
+      <p>
+        아래 표는 사용자가 제공한 XML 4개를 먼저 분석한 뒤, 반민특위 활동기 전후에 집중적으로 언급된 인물들의 친일 협력 행적,
+        공판 내용, 체포 정황을 수업용으로 다시 정리한 것입니다. 표에서 인물을 클릭하면 오른쪽에서 상세 행적과 출처를 확인할 수 있습니다.
+      </p>
+      <div class="hero-meta">
+        <div>
+          <strong>분석 대상</strong>
+          <span>`pj_001.xml` ~ `pj_004.xml` 원문 4종</span>
+        </div>
+        <div>
+          <strong>정리 기준</strong>
+          <span>반민특위 시기 핵심 인물과 기사·공판 중심 요약</span>
+        </div>
+        <div>
+          <strong>활용 방식</strong>
+          <span>인물 클릭형 탐색, 검색, 범주 필터 지원</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="analysis">
+      <h2>XML 분석 요약</h2>
+      <div class="analysis-grid">
+        <article class="analysis-card">
+          <h3>pj_001.xml</h3>
+          <p>
+            <strong>《민족정기의 심판》</strong> 계열 자료입니다. 친일 세력의 죄상, 조선임전보국단, 국민총력조선연맹,
+            대의당 사건 등 조직 단위의 서술이 많아 배경 자료로 유용합니다.
+          </p>
+        </article>
+        <article class="analysis-card">
+          <h3>pj_002.xml</h3>
+          <p>
+            <strong>《반민자 대공판기》</strong>로, 반민특위의 체포·공판·감방생활·특위 간부 암살 음모까지 다룬
+            사건 진행형 기록입니다. 인물별 공판 흐름을 확인하기 좋습니다.
+          </p>
+        </article>
+        <article class="analysis-card">
+          <h3>pj_003.xml</h3>
+          <p>
+            <strong>《반민자 죄상기》</strong>로, 박흥식·김태석·이광수·최남선·노덕술 등 주요 인물의
+            친일 행적을 기사 형식으로 집중 서술합니다. 이번 표의 핵심 인물 데이터는 이 파일 비중이 큽니다.
+          </p>
+        </article>
+        <article class="analysis-card">
+          <h3>pj_004.xml</h3>
+          <p>
+            <strong>《친일파 군상》</strong> 상권으로, 편집자 서문과 범례, 방대한 예상 등장 인물 목록이 담겨 있습니다.
+            개인 평가보다 ‘친일파 군상 전체’의 범위와 편찬 의도를 읽는 데 의미가 큽니다.
+          </p>
+        </article>
+      </div>
+    </section>
+
+    <section class="workspace">
+      <div class="panel table-panel">
+        <div class="panel-head">
+          <h2>인물 표</h2>
+          <p>이름, 분야, 핵심 혐의를 빠르게 훑은 뒤 행을 클릭하면 상세 내용이 열립니다.</p>
+        </div>
+        <div class="toolbar">
+          <input id="searchInput" type="search" placeholder="인물명, 분야, 핵심어 검색" />
+          <select id="categoryFilter" aria-label="분야 필터">
+            <option value="all">전체 분야</option>
+          </select>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <thead>
+              <tr>
+                <th style="width: 18%;">인물</th>
+                <th style="width: 15%;">분야</th>
+                <th style="width: 17%;">대표 직위</th>
+                <th>핵심 행적 요약</th>
+              </tr>
+            </thead>
+            <tbody id="tableBody"></tbody>
+          </table>
+          <div id="emptyState" class="empty" hidden>조건에 맞는 인물이 없습니다.</div>
+        </div>
+      </div>
+
+      <aside class="panel detail-panel" id="detailPanel" aria-live="polite"></aside>
+    </section>
+  </div>
+
+  <script src="./people_data.js"></script>
+  <script>
+    const payload = window.AUTO_PEOPLE_PAYLOAD || { totalPeople: 0, files: [], people: [] };
+    const people = (payload.people || []).map((person) => ({
+      ...person,
+      hanja: person.hanja || "",
+      alias: person.alias || "원문 등장 인물",
+      actions: Array.isArray(person.actions) ? person.actions : [],
+      sources: Array.isArray(person.sources) ? person.sources : []
+    }));
+
+    const tableBody = document.getElementById("tableBody");
+    const detailPanel = document.getElementById("detailPanel");
+    const searchInput = document.getElementById("searchInput");
+    const categoryFilter = document.getElementById("categoryFilter");
+    const emptyState = document.getElementById("emptyState");
+
+    const panelHeading = document.querySelector(".panel-head h2");
+    const panelLead = document.querySelector(".panel-head p");
+    if (panelHeading) {
+      panelHeading.textContent = `인물 표 (${payload.totalPeople.toLocaleString("ko-KR")}명)`;
+    }
+    if (panelLead) {
+      const fileSummary = (payload.files || [])
+        .map(file => `${file.file.replace(".xml", "")}: ${file.uniqueNames.toLocaleString("ko-KR")}명`)
+        .join(" · ");
+      panelLead.textContent = `인명 태그(index type="이름") 기준으로 자동 추출한 전체 인물 목록이며, 이름은 가능한 범위에서 한자(독음) 형식으로 표기했습니다. ${fileSummary}`;
+    }
+
+    const categories = [...new Set(people.map(person => person.category))];
+    categories.forEach(category => {
+      const option = document.createElement("option");
+      option.value = category;
+      option.textContent = category;
+      categoryFilter.appendChild(option);
+    });
+
+    let selectedId = people[0].id;
+
+    function renderDetail(person) {
+      const subLabel = person.hanja && !person.name.includes(person.hanja)
+        ? [person.hanja, person.alias].filter(Boolean).join(" · ")
+        : (person.alias || "");
+      detailPanel.innerHTML = `
+        <div class="detail-top">
+          <div>
+            <span class="badge">${person.category}</span>
+            <h2>${person.name}</h2>
+            <div class="alias">${subLabel}</div>
+          </div>
+          <span class="badge">${person.role}</span>
+        </div>
+
+        <div class="detail-summary">${person.summary}</div>
+
+        <div class="detail-grid">
+          <div class="mini">
+            <strong>대표 직위/성격</strong>
+            <span>${person.role || "원문 등장 인물"}</span>
+          </div>
+          <div class="mini">
+            <strong>주요 시기</strong>
+            <span>${person.period || "원문 전체 문맥 참고"}</span>
+          </div>
+          <div class="mini">
+            <strong>핵심 혐의</strong>
+            <span>${person.charges || "원문 문맥 추가 확인 필요"}</span>
+          </div>
+          <div class="mini">
+            <strong>정리 방식</strong>
+            <span>원문 기사·공판 기록을 학습용으로 재서술</span>
+          </div>
+        </div>
+
+        <section class="section">
+          <h3>주요 행적</h3>
+          <ul>
+            ${person.actions.length
+              ? person.actions.map(action => `<li>${action}</li>`).join("")
+              : "<li>추출된 이름은 확인되지만, 이 인물의 상세 문맥은 원문을 더 직접 대조해 볼 필요가 있습니다.</li>"}
+          </ul>
+        </section>
+
+        <section class="section">
+          <h3>출처</h3>
+          <div class="source-list">
+            ${person.sources.length
+              ? person.sources.map(source => `<span class="source-item">${source}</span>`).join("")
+              : "<span class='source-item'>출처 정보 없음</span>"}
+          </div>
+        </section>
+
+        <div class="note">
+          이 페이지는 XML 원문을 그대로 전재하지 않고, 수업에서 읽기 쉽도록 핵심 사실만 압축해 정리한 자료입니다.
+          세부 문장과 해석은 원문 기사 맥락에 따라 차이가 있을 수 있으므로 발표 자료로 쓸 때는 출처와 함께 확인하는 것이 좋습니다.
+        </div>
+      `;
+    }
+
+    function filteredPeople() {
+      const query = searchInput.value.trim().toLowerCase();
+      const category = categoryFilter.value;
+
+      return people.filter(person => {
+        const haystack = [
+          person.name,
+          person.hanja,
+          person.alias,
+          person.category,
+          person.role,
+          person.summary,
+          person.charges,
+          ...person.actions
+        ].join(" ").toLowerCase();
+
+        const matchesQuery = !query || haystack.includes(query);
+        const matchesCategory = category === "all" || person.category === category;
+        return matchesQuery && matchesCategory;
+      });
+    }
+
+    function renderTable() {
+      const rows = filteredPeople();
+
+      if (!rows.some(person => person.id === selectedId)) {
+        selectedId = rows[0] ? rows[0].id : null;
+      }
+
+      tableBody.innerHTML = rows.map(person => `
+        <tr data-id="${person.id}" class="${person.id === selectedId ? "active" : ""}">
+          <td>
+            <div class="person-name">${person.name}</div>
+            <div class="alias">${person.hanja}</div>
+          </td>
+          <td><span class="badge">${person.category}</span></td>
+          <td>${person.role}</td>
+          <td>${person.summary}</td>
+        </tr>
+      `).join("");
+
+      emptyState.hidden = rows.length > 0;
+
+      if (rows.length > 0) {
+        const current = rows.find(person => person.id === selectedId) || rows[0];
+        selectedId = current.id;
+        renderDetail(current);
+      } else {
+        detailPanel.innerHTML = `
+          <div class="detail-top">
+            <div>
+              <span class="badge">안내</span>
+              <h2>선택된 인물이 없습니다</h2>
+            </div>
+          </div>
+          <div class="detail-summary">검색어나 분야 필터를 다시 조정하면 인물별 행적을 볼 수 있습니다.</div>
+        `;
+      }
+
+      [...tableBody.querySelectorAll("tr")].forEach(row => {
+        row.addEventListener("click", () => {
+          selectedId = row.dataset.id;
+          renderTable();
+        });
+      });
+    }
+
+    searchInput.addEventListener("input", renderTable);
+    categoryFilter.addEventListener("change", renderTable);
+
+    if (people.length === 0) {
+      detailPanel.innerHTML = `
+        <div class="detail-top">
+          <div>
+            <span class="badge">안내</span>
+            <h2>데이터가 아직 생성되지 않았습니다</h2>
+          </div>
+        </div>
+        <div class="detail-summary">같은 폴더의 <code>generate_people_data.ps1</code>를 실행해 <code>people_data.js</code>를 생성하면 전체 인물 데이터가 표시됩니다.</div>
+      `;
+    } else {
+      renderTable();
+    }
+  </script>
+</body>
+</html>
