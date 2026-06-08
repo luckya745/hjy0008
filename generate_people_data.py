@@ -35,6 +35,17 @@ COMMON_REPLACEMENTS = [
     ("전률할", "전율할"),
 ]
 
+# 💡 1. 한자 -> 한글 변환 수동 예외 처리 사전 추가
+CUSTOM_NAME_DICT = {
+    "崔南善": "최남선",
+    "李光洙": "이광수",
+    "李鍾滎": "이종형",
+    "朴興植": "박흥식",
+    "金泰錫": "김태석",
+    "盧德述": "노덕술",
+    # 필요시 이곳에 변환이 안 되는 인물을 계속 추가하세요.
+}
+
 MANUAL_OVERRIDES = {
     "朴興植": {
         "summary": "화신백화점과 조선비행기회사 운영을 바탕으로 일본의 전시 동원 체제에 적극 협력한 대표적 친일 실업가로 여러 문헌에서 반복적으로 언급됩니다.",
@@ -163,6 +174,10 @@ def infer_role(category: str, context: str) -> str:
 
 
 def convert_hanja_only(text: str, hangul_map: dict[str, list[str]]) -> str:
+    # 💡 2. 본문 변환 시에도 수동 사전에 있는 단어를 우선 변경
+    for hanja, hangul in CUSTOM_NAME_DICT.items():
+        text = text.replace(hanja, hangul)
+
     def repl(match: re.Match[str]) -> str:
         return reading_for_hanja(match.group(0), hangul_map)
 
@@ -196,41 +211,23 @@ def load_hangul_map() -> dict[str, list[str]]:
 
 def dueum_transform(syllable: str) -> str:
     dueum_map = {
-        "라": "나",
-        "래": "내",
-        "랴": "야",
-        "량": "양",
-        "려": "여",
-        "례": "예",
-        "로": "노",
-        "뢰": "뇌",
-        "료": "요",
-        "루": "누",
-        "류": "유",
-        "륙": "육",
-        "륜": "윤",
-        "률": "율",
-        "륭": "융",
-        "륵": "늑",
-        "름": "늠",
-        "릉": "능",
-        "리": "이",
-        "린": "인",
-        "림": "임",
-        "립": "입",
-        "녕": "영",
-        "녀": "여",
-        "뇨": "요",
-        "뉴": "유",
-        "니": "이",
+        "라": "나", "래": "내", "랴": "야", "량": "양", "려": "여",
+        "례": "예", "로": "노", "뢰": "뇌", "료": "요", "루": "누",
+        "류": "유", "륙": "육", "륜": "윤", "률": "율", "륭": "융",
+        "륵": "늑", "름": "늠", "릉": "능", "리": "이", "린": "인",
+        "림": "임", "립": "입", "녕": "영", "녀": "여", "뇨": "요",
+        "뉴": "유", "니": "이",
     }
     return dueum_map.get(syllable, syllable)
 
 
 def choose_reading(char: str, position: int, hangul_map: dict[str, list[str]]) -> str:
     options = hangul_map.get(char, [])
+    # 💡 3. 사전에 한자 독음이 없을 경우 콘솔에 경고 메시지 출력
     if not options:
+        print(f"⚠️ [변환 실패] '{char}' 한자의 독음을 Unihan 사전에서 찾을 수 없습니다.")
         return char
+    
     if position == 0:
         transformed = dueum_transform(options[0])
         if transformed in options:
@@ -263,6 +260,10 @@ def format_display_name(raw_name: str, hangul_map: dict[str, list[str]]) -> tupl
         return f"{hanja_name}({hangul_name})", hanja_name
 
     if re.fullmatch(r"[\u3400-\u4dbf\u4e00-\u9fff\uf900-\ufaff]+", name):
+        # 💡 4. 이름 변환 시 수동 사전을 최우선으로 확인
+        if name in CUSTOM_NAME_DICT:
+            return f"{name}({CUSTOM_NAME_DICT[name]})", name
+            
         return f"{name}({reading_for_hanja(name, hangul_map)})", name
 
     return name, ""
